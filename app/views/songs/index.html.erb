@@ -1,14 +1,26 @@
-<p style="color: green"><%= notice %></p>
+<div class=container >
+  <p style="color: green"><%= notice %></p>
+  <%= link_to "Add a new song", new_song_path %>
 
-<h1>Songs</h1>
+  <h1>Songs</h1>
 
-<div id="songs">
-  <% @songs.each do |song| %>
-    <%= render song %>
-    <p>
-      <%= link_to "Show this song", song %>
-    </p>
-  <% end %>
+  <table table" id="songs">
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Key</th>
+      <th>Mastered</th>
+    </th>
+    <% @songs.each do |song| %>
+      <tr>
+        <td><%= link_to song.name, song %></td>
+        <td><%= song.title %></td>
+        <td><%= song.artist %></td>
+        <td><%= song.key %></td>
+        <td><%= song.mastered %></td>
+      <tr>
+    <% end %>
+  </table>
 </div>
 
-<%= link_to "New song", new_song_path %>
