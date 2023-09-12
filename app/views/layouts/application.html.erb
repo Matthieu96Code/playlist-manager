@@ -13,11 +13,18 @@
 
   <body>
 
-    <nav class="container">
-      <ul>
-        <li><a href="#" >Song list</a></li>
-        <li><a href="#" >Live playlist</a></li>
-      </ul>
+    <nav class="container navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand col" href="#" >PMA</a>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Song list</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Llive playlist</a>
+          </li>
+        </ul>
+      </div class="row">
     </nav>
 
     <%= yield %>
