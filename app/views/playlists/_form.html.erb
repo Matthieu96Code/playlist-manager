@@ -1,0 +1,36 @@
+<%= form_with(model: playlist) do |form| %>
+  <% if playlist.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
+
+      <ul>
+        <% playlist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div>
+    <%= form.label :song_ids, style: "display: block" %>
+    <% Song.all.each do |song| %>
+      <% next unless song.id.present? %>
+      <%= form.check_box :song_ids, { multiple: true }, song.id, nil %>
+      <%= form.label "song_playlist_#{song.id}", song.name %><br>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
