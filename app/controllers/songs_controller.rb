@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_action :set_song, only: %i[ show edit update destroy ]
+  before_action :set_song, only: %i[show edit update destroy]
 
   # GET /songs or /songs.json
   def index
@@ -7,8 +7,7 @@ class SongsController < ApplicationController
   end
 
   # GET /songs/1 or /songs/1.json
-  def show
-  end
+  def show; end
 
   # GET /songs/new
   def new
@@ -16,8 +15,7 @@ class SongsController < ApplicationController
   end
 
   # GET /songs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /songs or /songs.json
   def create
@@ -25,7 +23,7 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       if @song.save
-        format.html { redirect_to song_url(@song), notice: "Song was successfully created." }
+        format.html { redirect_to song_url(@song), notice: 'Song was successfully created.' }
         format.json { render :show, status: :created, location: @song }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class SongsController < ApplicationController
   def update
     respond_to do |format|
       if @song.update(song_params)
-        format.html { redirect_to song_url(@song), notice: "Song was successfully updated." }
+        format.html { redirect_to song_url(@song), notice: 'Song was successfully updated.' }
         format.json { render :show, status: :ok, location: @song }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +50,20 @@ class SongsController < ApplicationController
     @song.destroy
 
     respond_to do |format|
-      format.html { redirect_to songs_url, notice: "Song was successfully destroyed." }
+      format.html { redirect_to songs_url, notice: 'Song was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_song
-      @song = Song.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def song_params
-      params.require(:song).permit(:name, :title, :artist, :key, :mastered)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_song
+    @song = Song.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def song_params
+    params.require(:song).permit(:name, :title, :artist, :key, :mastered)
+  end
 end
