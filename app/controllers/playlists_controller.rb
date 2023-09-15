@@ -19,14 +19,15 @@ class PlaylistsController < ApplicationController
 
   # POST /playlists or /playlists.json
   def create
-    # @playlist = Playlist.new(playlist_params)
-    song_ids = playlist_params[:song_ids]
+    @playlist = Playlist.new(playlist_params)
+    
+    # song_ids = playlist_params[:song_ids]
 
-    if song_ids.blank?
-      create_single_playlist
-    else
-      create_multiple_playlists(song_ids)
-    end
+    # if song_ids.blank?
+    #   create_single_playlist
+    # else
+    #   create_multiple_playlists(song_ids)
+    # end
 
     respond_to do |format|
       if @playlist.save
@@ -64,17 +65,17 @@ class PlaylistsController < ApplicationController
 
   private
 
-  def create_single_playlist
-    @playlist = Playlist.new(playlist_params.except(:song_ids))
-  end
+  # def create_single_playlist
+  #   @playlist = Playlist.new(playlist_params.except(:song_ids))
+  # end
 
-  def create_multiple_playlists(song_ids)
-    song_ids.each do |song_id|
-      @playlist = Playlist.new(playlist_params.except(:song_ids))
-      @playlist.song_id = song_id
-      @playlist.save
-    end
-  end
+  # def create_multiple_playlists(song_ids)
+  #   song_ids.each do |song_id|
+  #     @playlist = Playlist.new(playlist_params.except(:song_ids))
+  #     @playlist.song_id = song_id
+  #     @playlist.save
+  #   end
+  # end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_playlist
@@ -83,6 +84,6 @@ class PlaylistsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def playlist_params
-    params.require(:playlist).permit(:name, :date, song_ids: [])
+    params.require(:playlist).permit(:name, :date)
   end
 end
