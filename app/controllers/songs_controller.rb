@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_action :set_song, only: %i[ show edit update destroy ]
+  before_action :set_song, only: %i[show edit update destroy]
 
   # GET /songs or /songs.json
   def index
@@ -31,7 +31,7 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       if @song.save
-        format.html { redirect_to playlist_songs_path(params[:playlist_id]), notice: "Song was successfully created." }
+        format.html { redirect_to playlist_songs_path(params[:playlist_id]), notice: 'Song was successfully created.' }
         format.json { render :show, status: :created, location: @song }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class SongsController < ApplicationController
   def update
     respond_to do |format|
       if @song.update(song_params)
-        format.html { redirect_to playlist_songs_path(params[:playlist_id]), notice: "Song was successfully updated." }
+        format.html { redirect_to playlist_songs_path(params[:playlist_id]), notice: 'Song was successfully updated.' }
         format.json { render :show, status: :ok, location: @song }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -58,19 +58,20 @@ class SongsController < ApplicationController
     @song.destroy
 
     respond_to do |format|
-      format.html { redirect_to playlist_songs_url, notice: "Song was successfully destroyed." }
+      format.html { redirect_to playlist_songs_url, notice: 'Song was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_song
-      @song = Song.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def song_params
-      params.require(:song).permit(:title, :artist, :key, :playlist_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_song
+    @song = Song.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def song_params
+    params.require(:song).permit(:title, :artist, :key, :playlist_id)
+  end
 end
