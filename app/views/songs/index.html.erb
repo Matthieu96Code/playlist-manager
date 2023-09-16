@@ -6,9 +6,9 @@
   <% @songs.each do |song| %>
     <%= render song %>
     <p>
-      <%= link_to "Show this song", song %>
+      <%= link_to "Show this song", playlist_song_path(@playlist_song, song) %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New song", new_song_path %>
+<%= link_to "New song", new_playlist_song_path %>
