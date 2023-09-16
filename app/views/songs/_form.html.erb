@@ -1,0 +1,35 @@
+<%= form_for song do |form| %>
+
+  <div class="field-new category-choice" >
+    <%= form.label :item, style: "display: block" %>
+    <% Item.all.each do |item| %>
+      <% next unless item.id.present? %>
+      <%= form.check_box :playlist_id, { multiple: true }, item.id, nil %>
+      <%= form.label "item_category_#{item.id}", item.title %><br>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :artist, style: "display: block" %>
+    <%= form.text_field :artist %>
+  </div>
+
+  <div>
+    <%= form.label :key, style: "display: block" %>
+    <%= form.text_field :key %>
+  </div>
+
+  <div>
+    <%= form.label :playlist_id, style: "display: block" %>
+    <%= form.text_field :playlist_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
