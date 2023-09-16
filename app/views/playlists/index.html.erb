@@ -6,6 +6,8 @@
   <% @playlists.each do |playlist| %>
     <%= render playlist %>
     <p>
+      <%= link_to "Song related", playlist_songs_path(playlist.id) %>
+      <br />
       <%= link_to "Show this playlist", playlist %>
     </p>
   <% end %>
