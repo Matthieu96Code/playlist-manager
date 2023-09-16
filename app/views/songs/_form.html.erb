@@ -1,15 +1,13 @@
-<%= form_with(model: song) do |form| %>
-  <% if song.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(song.errors.count, "error") %> prohibited this song from being saved:</h2>
+<%= form_for song do |form| %>
 
-      <ul>
-        <% song.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="field-new category-choice" >
+    <%= form.label :item, style: "display: block" %>
+    <% Item.all.each do |item| %>
+      <% next unless item.id.present? %>
+      <%= form.check_box :playlist_id, { multiple: true }, item.id, nil %>
+      <%= form.label "item_category_#{item.id}", item.title %><br>
+    <% end %>
+  </div>
 
   <div>
     <%= form.label :title, style: "display: block" %>
