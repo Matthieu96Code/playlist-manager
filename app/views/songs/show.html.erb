@@ -3,8 +3,8 @@
 <%= render @song %>
 
 <div>
-  <%= link_to "Edit this song", edit_song_path(@song) %> |
-  <%= link_to "Back to songs", songs_path %>
+  <%= link_to "Edit this song", edit_playlist_song_path(@playlist_song, @song) %> |
+  <%= link_to "Back to songs", playlist_songs_path %>
 
-  <%= button_to "Destroy this song", @song, method: :delete %>
+  <%= button_to "Destroy this song", playlist_song_path, method: :delete %>
 </div>
