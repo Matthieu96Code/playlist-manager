@@ -3,29 +3,35 @@ class SongsController < ApplicationController
 
   # GET /songs or /songs.json
   def index
-    @songs = Song.all
+    @songs = Song.where(playlist_id: params[:playlist_id])
+    @playlist_song = Playlist.find(params[:playlist_id])
   end
 
   # GET /songs/1 or /songs/1.json
   def show
+    @playlist_song = Playlist.find(params[:playlist_id])
   end
 
   # GET /songs/new
   def new
     @song = Song.new
+    @playlist = Playlist.find(params[:playlist_id])
+    # @song = @playlist.songs.build
   end
 
   # GET /songs/1/edit
   def edit
+    @playlist = Playlist.find(params[:playlist_id])
   end
 
   # POST /songs or /songs.json
   def create
     @song = Song.new(song_params)
+    @song.playlist_id = (params[:playlist_id])
 
     respond_to do |format|
       if @song.save
-        format.html { redirect_to song_url(@song), notice: "Song was successfully created." }
+        format.html { redirect_to playlist_songs_path(params[:playlist_id]), notice: "Song was successfully created." }
         format.json { render :show, status: :created, location: @song }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +44,7 @@ class SongsController < ApplicationController
   def update
     respond_to do |format|
       if @song.update(song_params)
-        format.html { redirect_to song_url(@song), notice: "Song was successfully updated." }
+        format.html { redirect_to playlist_songs_path(params[:playlist_id]), notice: "Song was successfully updated." }
         format.json { render :show, status: :ok, location: @song }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +58,7 @@ class SongsController < ApplicationController
     @song.destroy
 
     respond_to do |format|
-      format.html { redirect_to songs_url, notice: "Song was successfully destroyed." }
+      format.html { redirect_to playlist_songs_url, notice: "Song was successfully destroyed." }
       format.json { head :no_content }
     end
   end
