@@ -1,11 +1,8 @@
-/* root: {
-
-} */
 .wrapper {
-    /* background-color: #cce3de !important; */
-    background-image: linear-gradient(to right, #2c3e50, #4ca1af) !important;
+  /* background-color: #cce3de !important; */
+  background-image: linear-gradient(to right, #2c3e50, #4ca1af) !important;
 }
 
 .navbar {
-    background-color: #e1e5f2 !important;
+  background-color: #e1e5f2 !important;
 }
