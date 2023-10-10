@@ -1,14 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Items</h1>
+<h1 class="text-light">Items</h1>
 
-<div id="items">
+<table class="table table-dark table-striped container" id="items">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Artist</th>
+      <th scope="col">Key</th>
+      <th scope="col">Detail</th>
+    </tr>
+  </thead>
   <% @items.each do |item| %>
     <%= render item %>
-    <p>
-      <%= link_to "Show this item", item %>
-    </p>
   <% end %>
-</div>
+</table>
 
-<%= link_to "New item", new_item_path %>
+<%= link_to "New item", new_item_path, class:"text-light" %>
